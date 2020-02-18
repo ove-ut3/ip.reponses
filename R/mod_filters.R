@@ -16,7 +16,11 @@
 mod_filters_ui <- function(id){
   ns <- NS(id)
   tagList(
-    uiOutput(ns("ui_filters"))
+    uiOutput(ns("ui_filters"), inline = TRUE),
+    div(
+      style = "display: inline-block; vertical-align: top; margin-top: 1.4%;",
+      downloadButton(ns("excel"), "Excel")
+    )
   )
 }
     
@@ -82,10 +86,6 @@ mod_filters_server <- function(input, output, session, rv, res_auth){
         div(
           style = "display: inline-block; width: 47%; vertical-align: top;",
           uiOutput(ns("filter_annee"))
-        ),
-        div(
-          style = "display: inline-block; vertical-align: top; margin-top: 1.4%;",
-          downloadButton(ns("excel"), "Excel")
         )
       )
       
@@ -95,10 +95,6 @@ mod_filters_server <- function(input, output, session, rv, res_auth){
         div(
           style = "display: inline-block; width: 95%; vertical-align: top;",
           uiOutput(ns("filter_annee"))
-        ),
-        div(
-          style = "display: inline-block; vertical-align: top; margin-top: 1.4%;",
-          downloadButton(ns("excel"), "Excel")
         )
       )
       
