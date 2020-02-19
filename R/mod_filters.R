@@ -117,7 +117,7 @@ mod_filters_server <- function(input, output, session, rv, res_auth){
             type_diplome,
             ~ dplyr::select(
               .x, 
-              patchr::filter_data_patch(rv$df_columns_description, filtre = .y) %>% 
+              dplyr::filter(rv$df_columns_description, filtre == .y) %>% 
                 dplyr::pull(champ)
             )
           )
@@ -126,7 +126,7 @@ mod_filters_server <- function(input, output, session, rv, res_auth){
         dplyr::select(-type_diplome)
       
       dictionnaire <- rv$df_columns_description %>% 
-        patchr::filter_data_patch(filtre = unique(rv$df_responses_hot()$type_diplome)) %>% 
+        dplyr::filter(filtre == unique(rv$df_responses_hot()$type_diplome)) %>% 
         dplyr::select(champ, signification, commentaire)
       
       data <- list(

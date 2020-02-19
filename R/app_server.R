@@ -5,7 +5,10 @@ app_server <- function(input, output, session) {
   res_auth <- shinymanager::secure_server(
     check_credentials = shinymanager::check_credentials(
       golem::get_golem_options("users") %>% 
-        patchr::normalise_colnames() %>% 
+        dplyr::rename_all(tolower) %>% 
+        dplyr::rename_all(stringr::str_replace_all, "[[:punct:]\\s]+", "_") %>% 
+        dplyr::rename_all(stringr::str_remove_all, "[^\\w]") %>% 
+        dplyr::rename_all(stringi::stri_trans_general, "latin-ascii") %>% 
         tidyr::nest(code_diplome = code_diplome) %>% 
         dplyr::mutate_at("code_diplome", purrr::map, 1) %>% 
         dplyr::mutate_at("code_diplome", dplyr::na_if, "")

@@ -12,7 +12,6 @@ Imports:
     golem,
     impexp,
     lubridate,
-    patchr,
     rhandsontable,
     scales,
     shiny,
@@ -23,6 +22,5 @@ Imports:
     tidyr,
     writexl
 Remotes:
-    stephLH/impexp,
-    stephLH/patchr
+    stephLH/impexp
 RoxygenNote: 7.0.2

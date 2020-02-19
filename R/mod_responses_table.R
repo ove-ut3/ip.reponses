@@ -61,7 +61,7 @@ mod_responses_table_server <- function(input, output, session, rv, global, res_a
           type_diplome,
           ~ dplyr::select(
             .x, 
-            patchr::filter_data_patch(rv$df_columns_description, filtre = .y) %>% 
+            dplyr::filter(rv$df_columns_description, filtre == .y) %>% 
               dplyr::pull(champ)
           )
         )
