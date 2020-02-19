@@ -61,7 +61,9 @@ mod_responses_table_server <- function(input, output, session, rv, global, res_a
           type_diplome,
           ~ dplyr::select(
             .x, 
-            dplyr::filter(rv$df_columns_description, filtre == .y) %>% 
+            rv$df_columns_description %>% 
+              tidyr::separate_rows(filtre, sep = ";") %>% 
+              dplyr::filter(filtre %in% .y | is.na(filtre))
               dplyr::pull(champ)
           )
         )

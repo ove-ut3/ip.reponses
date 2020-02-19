@@ -116,8 +116,10 @@ mod_filters_server <- function(input, output, session, rv, res_auth){
             data,
             type_diplome,
             ~ dplyr::select(
-              .x, 
-              dplyr::filter(rv$df_columns_description, filtre == .y) %>% 
+              .x,
+              rv$df_columns_description %>% 
+                tidyr::separate_rows(filtre, sep = ";") %>% 
+                dplyr::filter(filtre %in% .y | is.na(filtre)) %>% 
                 dplyr::pull(champ)
             )
           )
@@ -126,7 +128,8 @@ mod_filters_server <- function(input, output, session, rv, res_auth){
         dplyr::select(-type_diplome)
       
       dictionnaire <- rv$df_columns_description %>% 
-        dplyr::filter(filtre == unique(rv$df_responses_hot()$type_diplome)) %>% 
+        tidyr::separate_rows(filtre, sep = ";") %>% 
+        dplyr::filter(filtre %in% unique(rv$df_responses_hot()$type_diplome) | is.na(filtre)) %>% 
         dplyr::select(champ, signification, commentaire)
       
       data <- list(
