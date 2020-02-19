@@ -1,14 +1,15 @@
 Package: ip.reponses
-Title: An Amazing Shiny App
-Version: 0.0.0.9000
-Authors@R: person("firstname", "lastname", email = "your@email.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: What license is it under?
+Title: Mise à disposition des réponses aux enquêtes d'insertion professionnelle.
+Version: 0.1
+Authors@R: person("OVE UT3", email = "ove@univ-tlse3.fr", role = c("aut", "cre"))
+Description: Les responsables et secrétaires de formation souhaitent avaoir accès aux réponses individuelles des enquêtes d'insertion professionnelle.
+    Cette application les leur met à disposition au moyen d'une interface shiny incluant des fonctions d'export de données.
+License: MIT
 Encoding: UTF-8
 LazyData: true
 Imports: 
     dplyr,
-    DT
+    DT,
     glue,
     golem,
     purrr,
