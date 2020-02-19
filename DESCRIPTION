@@ -8,19 +8,17 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     dplyr,
+    DT
     glue,
     golem,
-    impexp,
-    lubridate,
-    rhandsontable,
+    purrr,
     scales,
     shiny,
+    shinyalert,
     shinymanager,
     shinyWidgets,
-    stats,
+    stringi,
     stringr,
     tidyr,
     writexl
-Remotes:
-    stephLH/impexp
 RoxygenNote: 7.0.2
