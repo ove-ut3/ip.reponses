@@ -42,7 +42,7 @@ mod_stats_values_server <- function(input, output, session, rv){
       data <- data %>% 
         dplyr::semi_join(
           rv$df_responses_filter_formation(),
-          by = "identifiant"
+          by = c("annee", "code_etudiant")
         )
       
     }
@@ -52,7 +52,7 @@ mod_stats_values_server <- function(input, output, session, rv){
       data <- data %>% 
         dplyr::semi_join(
           rv$df_responses_filter_annee(),
-          by = "identifiant"
+          by = c("annee", "code_etudiant")
         )
       
     }

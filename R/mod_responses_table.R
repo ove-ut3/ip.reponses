@@ -40,7 +40,7 @@ mod_responses_table_server <- function(input, output, session, rv, global, res_a
       data <- data %>% 
         dplyr::semi_join(
           rv$df_responses_filter_formation(),
-          by = "identifiant"
+          by = c("annee", "code_etudiant")
         )
       
     }
