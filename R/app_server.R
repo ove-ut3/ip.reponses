@@ -14,7 +14,7 @@ app_server <- function(input, output, session) {
         dplyr::mutate_at("code_diplome", dplyr::na_if, "")
     )
   )
-
+  
   rv <- reactiveValues()
   
   rv$df_columns_description <- golem::get_golem_options("df_columns_description") %>% 

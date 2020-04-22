@@ -39,6 +39,8 @@ mod_stats_values_server <- function(input, output, session, rv){
     
     if (!is.null(rv$df_responses_filter_formation)) {
       
+      req(rv$df_responses_filter_formation())
+      
       data <- data %>% 
         dplyr::semi_join(
           rv$df_responses_filter_formation(),
@@ -48,6 +50,8 @@ mod_stats_values_server <- function(input, output, session, rv){
     }
     
     if (!is.null(rv$df_responses_filter_annee)) {
+      
+      req(rv$df_responses_filter_annee())
       
       data <- data %>% 
         dplyr::semi_join(
@@ -61,13 +65,13 @@ mod_stats_values_server <- function(input, output, session, rv){
     
   })
   
-  output$diplomes <- renderValueBox(
+  output$diplomes <- renderValueBox({
     valueBox(
       nrow(df_responses_stats()),
       "Diplômés",
       icon = icon("user-graduate")
     )
-  )
+  })
   
   date_jour <- Sys.Date() %>%
     format("%d %B %Y") %>% stringr::str_remove("^0") %>%
