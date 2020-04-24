@@ -50,12 +50,7 @@ mod_responses_table_server <- function(input, output, session, rv, global, res_a
   })
   
   output$responses_table <- DT::renderDT({
-    
-    req(
-      rv$df_responses_filter_annee,
-      rv$df_responses_filter_formation
-    )
-    
+
     data <- rv$df_responses_hot() %>% 
       tidyr::nest(data = -type_diplome) %>% 
       dplyr::mutate(
