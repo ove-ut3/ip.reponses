@@ -110,30 +110,30 @@ mod_filters_server <- function(input, output, session, rv, res_auth){
     content = function(con) {
       
       data <- rv$df_responses_hot() %>% 
-        tidyr::nest(data = -type_diplome) %>% 
+        tidyr::nest(data = -.data$type_diplome) %>% 
         dplyr::mutate(
           data = purrr::map2(
             data,
-            type_diplome,
+            .data$type_diplome,
             ~ dplyr::select(
               .x,
               rv$df_columns_description %>% 
-                tidyr::separate_rows(filtre, sep = ";") %>% 
-                dplyr::filter(filtre %in% .y | is.na(filtre)) %>% 
-                dplyr::pull(champ)
+                tidyr::separate_rows(.data$filtre, sep = ";") %>% 
+                dplyr::filter(.data$filtre %in% .y | is.na(.data$filtre)) %>% 
+                dplyr::pull(.data$champ)
             )
           )
         ) %>% 
         tidyr::unnest(data) %>% 
-        dplyr::select(-type_diplome)
+        dplyr::select(-.data$type_diplome)
       
       dictionnaire <- rv$df_columns_description %>% 
-        tidyr::separate_rows(filtre, sep = ";") %>% 
-        dplyr::filter(filtre %in% unique(rv$df_responses_hot()$type_diplome) | is.na(filtre)) %>% 
-        dplyr::select(champ, signification, commentaire)
+        tidyr::separate_rows(.data$filtre, sep = ";") %>% 
+        dplyr::filter(.data$filtre %in% unique(rv$df_responses_hot()$type_diplome) | is.na(.data$filtre)) %>% 
+        dplyr::select(.data$champ, .data$signification, .data$commentaire)
       
       data <- list(
-        "Donn\u00e9es" = data,
+        "Donnees" = data,
         "Dictionnaire" = dictionnaire
       )
       

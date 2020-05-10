@@ -9,7 +9,7 @@ app_server <- function(input, output, session) {
         dplyr::rename_all(stringr::str_replace_all, "[[:punct:]\\s]+", "_") %>% 
         dplyr::rename_all(stringr::str_remove_all, "[^\\w]") %>% 
         dplyr::rename_all(stringi::stri_trans_general, "latin-ascii") %>% 
-        tidyr::nest(code_diplome = code_diplome) %>% 
+        tidyr::nest(code_diplome = .data$code_diplome) %>% 
         dplyr::mutate_at("code_diplome", purrr::map, 1) %>% 
         dplyr::mutate_at("code_diplome", dplyr::na_if, "")
     )
@@ -18,7 +18,7 @@ app_server <- function(input, output, session) {
   rv <- reactiveValues()
   
   rv$df_columns_description <- golem::get_golem_options("df_columns_description") %>% 
-    dplyr::arrange(ordre_champ) %>% 
+    dplyr::arrange(.data$ordre_champ) %>% 
     dplyr::semi_join(
       dplyr::tibble(champ = names(golem::get_golem_options("df_responses"))),
       by = "champ"
@@ -33,7 +33,7 @@ app_server <- function(input, output, session) {
     if (any(!is.na(res_auth$code_diplome[[1]]))) {
       
       df_responses <- df_responses %>% 
-        dplyr::filter(code_etape %in% res_auth$code_diplome[[1]])
+        dplyr::filter(.data$code_etape %in% res_auth$code_diplome[[1]])
       
     }
     
@@ -45,6 +45,6 @@ app_server <- function(input, output, session) {
   
   callModule(mod_stats_values_server, "stats_values_ui", rv)
   
-  callModule(mod_responses_table_server, "responses_table_ui", rv, global, res_auth)
+  callModule(mod_responses_table_server, "responses_table_ui", rv, res_auth)
   
 }

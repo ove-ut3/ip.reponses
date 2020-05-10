@@ -6,6 +6,13 @@
 \usage{
 run_app(users, df_responses, df_columns_description)
 }
+\arguments{
+\item{users}{User table}
+
+\item{df_responses}{Responses tibble}
+
+\item{df_columns_description}{Responses column description tibble}
+}
 \description{
 Run the Shiny Application
 }

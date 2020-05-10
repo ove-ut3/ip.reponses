@@ -1,5 +1,9 @@
 #' Run the Shiny Application
-#'
+#' 
+#' @param users User table
+#' @param df_responses Responses tibble
+#' @param df_columns_description Responses column description tibble
+#' 
 #' @export
 #' @importFrom shiny shinyApp
 #' @importFrom golem with_golem_options

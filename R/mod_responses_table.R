@@ -26,7 +26,7 @@ mod_responses_table_ui <- function(id){
 #' @export
 #' @keywords internal
 
-mod_responses_table_server <- function(input, output, session, rv, global, res_auth){
+mod_responses_table_server <- function(input, output, session, rv, res_auth){
   ns <- session$ns
   
   rv$df_responses_hot <- reactive({
@@ -52,22 +52,22 @@ mod_responses_table_server <- function(input, output, session, rv, global, res_a
   output$responses_table <- DT::renderDT({
 
     data <- rv$df_responses_hot() %>% 
-      tidyr::nest(data = -type_diplome) %>% 
+      tidyr::nest(data = -.data$type_diplome) %>% 
       dplyr::mutate(
         data = purrr::map2(
           data,
-          type_diplome,
+          .data$type_diplome,
           ~ dplyr::select(
             .x, 
             rv$df_columns_description %>% 
-              tidyr::separate_rows(filtre, sep = ";") %>% 
-              dplyr::filter(filtre %in% .y | is.na(filtre)) %>% 
-              dplyr::pull(champ)
+              tidyr::separate_rows(.data$filtre, sep = ";") %>% 
+              dplyr::filter(.data$filtre %in% .y | is.na(.data$filtre)) %>% 
+              dplyr::pull(.data$champ)
           )
         )
       ) %>% 
       tidyr::unnest(data) %>% 
-      dplyr::select(-type_diplome)
+      dplyr::select(-.data$type_diplome)
     
     targets <- data %>% 
       dplyr::select_if(is.character) %>% 
@@ -79,10 +79,9 @@ mod_responses_table_server <- function(input, output, session, rv, global, res_a
         rownames = FALSE,
         escape = FALSE,
         options = list(
-          dom = "rt",
+          dom = "rtp",
           scrollX = TRUE,
-          scrollY = '71vh',
-          pageLength = -1,
+          scrollY = '67vh',
           columnDefs = list(list(
             targets = which(names(data) %in% targets) - 1,
             render = DT::JS(

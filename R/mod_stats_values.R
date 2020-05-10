@@ -80,7 +80,7 @@ mod_stats_values_server <- function(input, output, session, rv){
   output$repondants <- renderValueBox({
     valueBox(
       df_responses_stats() %>%
-        dplyr::filter(completed == "Oui") %>%
+        dplyr::filter(.data$completed == "Oui") %>%
         nrow(),
       glue::glue("R\u00e9pondants"),
       icon = icon("edit")
@@ -89,7 +89,7 @@ mod_stats_values_server <- function(input, output, session, rv){
   
   output$taux_reponse <- renderValueBox({
     repondants <- df_responses_stats() %>%
-      dplyr::filter(completed == "Oui")
+      dplyr::filter(.data$completed == "Oui")
     valueBox(
       scales::percent(
         nrow(repondants) / nrow(df_responses_stats()),

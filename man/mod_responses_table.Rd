@@ -7,7 +7,7 @@
 \usage{
 mod_responses_table_ui(id)
 
-mod_responses_table_server(input, output, session, rv, global, res_auth)
+mod_responses_table_server(input, output, session, rv, res_auth)
 }
 \arguments{
 \item{id}{shiny id}
