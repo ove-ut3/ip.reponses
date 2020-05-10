@@ -1,5 +1,5 @@
 Package: ip.reponses
-Title: Mise à disposition des réponses aux enquêtes d'insertion professionnelle.
+Title: Mise à disposition des réponses aux enquêtes d'insertion professionnelle
 Version: 0.1
 Authors@R: person("OVE UT3", email = "ove@univ-tlse3.fr", role = c("aut", "cre"))
 Description: Les responsables et secrétaires de formation souhaitent avaoir accès aux réponses individuelles des enquêtes d'insertion professionnelle.
