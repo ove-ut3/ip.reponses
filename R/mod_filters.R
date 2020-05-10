@@ -68,7 +68,7 @@ mod_filters_server <- function(input, output, session, rv, res_auth){
     shinyWidgets::selectizeGroupUI(
       ns("filter_annee"),
       params = list(
-        annee_u = list(inputId = "annee_u", title = "Année :")
+        annee_u = list(inputId = "annee_u", title = "Ann\u00e9e :")
       )
     )
     
@@ -133,7 +133,7 @@ mod_filters_server <- function(input, output, session, rv, res_auth){
         dplyr::select(champ, signification, commentaire)
       
       data <- list(
-        "Données" = data,
+        "Donn\u00e9es" = data,
         "Dictionnaire" = dictionnaire
       )
       

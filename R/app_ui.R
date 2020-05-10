@@ -6,7 +6,7 @@ app_ui <- function() {
     golem_add_external_resources(),
     # List the first level UI elements here 
     dashboardPage(
-      dashboardHeader(title = "Enquêtes d'insertion professionnelle - Suivi des réponses", disable = TRUE),
+      dashboardHeader(title = "Enqu\u00eates d'insertion professionnelle - Suivi des r\u00e9ponses", disable = TRUE),
       dashboardSidebar(collapsed = TRUE),
       dashboardBody(
         mod_stats_values_ui("stats_values_ui"),

@@ -68,7 +68,7 @@ mod_stats_values_server <- function(input, output, session, rv){
   output$diplomes <- renderValueBox({
     valueBox(
       nrow(df_responses_stats()),
-      "Diplômés",
+      "Dipl\u00f4m\u00e9s",
       icon = icon("user-graduate")
     )
   })
@@ -82,7 +82,7 @@ mod_stats_values_server <- function(input, output, session, rv){
       df_responses_stats() %>%
         dplyr::filter(completed == "Oui") %>%
         nrow(),
-      glue::glue("Répondants"),
+      glue::glue("R\u00e9pondants"),
       icon = icon("edit")
     )
   })
@@ -97,7 +97,7 @@ mod_stats_values_server <- function(input, output, session, rv){
         suffix = "\U202F%",
         accuracy = .1
       ),
-      glue::glue("Taux de réponse"),
+      glue::glue("Taux de r\u00e9ponse"),
       icon = icon("chart-bar")
     )
   })
