@@ -4,7 +4,7 @@ Version: 0.1
 Authors@R: person("OVE UT3", email = "ove@univ-tlse3.fr", role = c("aut", "cre"))
 Description: Les responsables et secrétaires de formation souhaitent avaoir accès aux réponses individuelles des enquêtes d'insertion professionnelle.
     Cette application les leur met à disposition au moyen d'une interface shiny incluant des fonctions d'export de données.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
@@ -13,9 +13,11 @@ Imports:
     glue,
     golem,
     purrr,
+    rlang,
     scales,
     shiny,
     shinyalert,
+    shinydashboard,
     shinymanager,
     shinyWidgets,
     stringi,
